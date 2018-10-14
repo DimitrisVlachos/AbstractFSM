@@ -73,11 +73,13 @@ public:
     }
 
 	void reset() {	
+	lock();
         for (auto i = m_transitions.begin(); i != m_transitions.end(); ++i) {
 			for (auto v : i->second)
            		v.completed = false;
 		}
 	}
+	unlock();
 
     bool register_state(const std::string& key,const std::string& transition_block_key,const std::vector<abstract_state_if*>& state_block) {
         lock();
